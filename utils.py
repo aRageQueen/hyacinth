@@ -11,6 +11,7 @@ def redact_text(text):
         text = pattern.sub(f"[REDACTED {label}]", text)
     return text
 
+# validates a credit card number using the Luhn algorithm
 def luhn_check(number: str) -> bool:
     digits = [int(d) for d in number if d.isdigit()]
     checksum = 0
