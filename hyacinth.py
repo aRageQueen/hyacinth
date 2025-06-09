@@ -1,5 +1,9 @@
 import os
+import pathlib
 from utils import redact_text
+
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+OUTPUT_DIR = os.path.join(ROOT_DIR, 'output')
 
 def scrub_file():
     #get file paths from the user
@@ -13,9 +17,9 @@ def scrub_file():
         # redact the PII
         redacted = redact_text(content)
 
+        output = pathlib.Path(input_path)
         # generate the output file
-        base, ext = os.path.splitext(input_path)
-        output_path = f"{base}_redacted{ext}"
+        output_path = os.path.join(OUTPUT_DIR, f"{output.stem}_REDACTED{output.suffix}")
 
         # write the redacted content to the new output file
         with open(output_path, "w") as f:

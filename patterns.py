@@ -13,9 +13,9 @@ address_regex = re.compile(r'\b\d{1,5}\s[\w\s]+\s(?:Street|St|Avenue|Ave|Bouleva
 pii_patterns = {
     # dictionary mapping of PII labels to corresponding regex patterns
     "EMAIL": email_regex,
-    "PHONE": phone_regex,
-    "SSN": ssn_regex,
-    "DOB": dob_regex,
     "CREDIT CARD": credit_card_regex,
+    "SSN": ssn_regex,
+    "PHONE": phone_regex,
+    "DOB": dob_regex,
     "ADDRESS": address_regex
 }
