@@ -30,7 +30,7 @@ def scrub_file():
         print(f"\n An error has occurred: {e}\n")
 
 def show_menu():
-    print("Welcome to Hyacinth: a lightweight PII scrubber")
+    print("Welcome to hyacinth: a lightweight PII scrubber")
 
     # menu loop
     while True:
