@@ -1,24 +1,51 @@
-import argparse
+import os
 from utils import redact_text
 
-def main():
-    parser = argparse.ArgumentParser(description="Hyacinth: PII Scrubbing Tool")
-    parser.add_argument("input_file", help="Path to input text file")
-    parser.add_argument("output_file", help="Path to save redacted output")
-    args = parser.parse_args()
+def scrub_file():
+    #get file paths from the user
+    input_path = input("Enter path to input file: ")
 
-    # read input file
-    with open(args.input_file, "r") as f:
-        content = f.read()
+    try:
+        # read input file contents
+        with open(input_path, "r") as f:
+            content = f.read()
 
-    # redact the PII
-    redacted = redact_text(content)
+        # redact the PII
+        redacted = redact_text(content)
 
-    # write the redacted information to an output file
-    with open(args.output_file, "w") as f:
-        f.write(redacted)
+        # generate the output file
+        base, ext = os.path.splitext(input_path)
+        output_path = f"{base}_redacted{ext}"
 
-    print(f"Redacted output saved to {args.output_file}")
+        # write the redacted content to the new output file
+        with open(output_path, "w") as f:
+            f.write(redacted)
+        
+        print(f"\n File is scrubbed and saved to {output_path}\n")
+
+    except FileNotFoundError:
+        print("\n File wasn't found. Please check your path and try again.\n")
+    
+    except Exception as e:
+        print(f"\n An error has occurred: {e}\n")
+
+def show_menu():
+    print("Welcome to Hyacinth: a lightweight PII scrubber")
+
+    # menu loop
+    while True:
+        print("1. Scrub a file")
+        print("2. Exit\n")
+
+        # get the user's choice
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            scrub_file()
+        elif choice == "2":
+            print("\n Goodbye!\n")
+            break
+        else:
+            print("\n Invalid choice. Please enter either 1 or 2.\n")
 
 if __name__ == "__main__":
-    main()
+    show_menu()

@@ -17,9 +17,8 @@ cd hyacinth
 
 # Run
 Run hyacinth from the command line:
-python hyacinth.py input.txt output.txt
+python hyacinth.py
     input.txt: Path to the file containing sensitive text
-    output.txt: Path where the redacted version will be saved
 Example input: Please contact Harry at harry.arnold@outlook.com or (232) 786-9982. His SSN is 321-09-3219. Thanks!
 Example output: Please contact Harry at [REDACTED EMAIL] or [REDACTED PHONE]. His SSN is [REDACTED SSN]. Thanks!
 
